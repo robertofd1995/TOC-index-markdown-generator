@@ -1,7 +1,7 @@
 import os
 
 name_of_file= "index.md"
-route = "/Users/roberto/Documents/My_Voto_Documentacion"
+route = "/Users/UserName/Documents/Folder"
 deepLevel=1
 
 
