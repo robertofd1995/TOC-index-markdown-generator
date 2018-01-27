@@ -24,7 +24,7 @@ def write_files_in_directory(list_of_files):
 
 def write_index_of_directory(route, deep_level):
     if deep_level == 1:
-        myLife = codecs.open(name_of_file, "a", "utf-8-sig")
+        myFife = codecs.open(name_of_file, "a", "utf-8-sig")
 
         # Si ya existe un fichero TOC lo eliminamos
         if os.stat(name_of_file).st_size != 0:
@@ -36,6 +36,7 @@ def write_index_of_directory(route, deep_level):
 
     deep_level_now = deep_level
 
+    myFile.write("\n")
     create_header_list(os.path.relpath(".", ".."), deep_level)
 
     listOfFiles = [f for f in os.listdir() if os.path.isfile(f)]
@@ -46,12 +47,10 @@ def write_index_of_directory(route, deep_level):
         print(" \nfiles : ")
         write_files_in_directory(listOfFiles)
 
-    listOfDirs = [f for f in os.listdir() if os.path.isdir(f)]
+    listOfDirs = [f for f in os.listdir() if (os.path.isdir(f) and not f == ".git")]
 
     if listOfDirs:
-
         # Explora por directorios y ir hacia ellos  y repetir
-
         print("\nDIRS : ")
         for dir in listOfDirs:
 
@@ -61,6 +60,8 @@ def write_index_of_directory(route, deep_level):
                 deep_level_now += 1
 
                 write_index_of_directory(route_directory, deep_level_now)
+
+            deep_level_now -= 1
 
 
 if __name__ == '__main__':
